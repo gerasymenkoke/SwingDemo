@@ -44,55 +44,31 @@ jobs:
       run: |
              sudo apt-get update
              sudo apt-get install libc6-dev-i386 lib32z1 openjdk-11-jdk
-            
-             
+                        
              pwd
              ls -l
-                  
-            
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
+                             
              cd /home/runner/work/android-java-terminal/android-java-terminal/
             # chmod +x build.sh
             # ./build.sh
             # set -e
+             PROJ="/home/runner/work/android-java-terminal/android-java-terminal"
+             AAPT="/usr/local/lib/android/sdk/build-tools/31.0.0/aapt"
+             AAPT2="/usr/local/lib/android/sdk/build-tools/31.0.0/aapt2"
+             DX="/usr/local/lib/android/sdk/build-tools/30.0.0/dx"
+             ZIPALIGN="/usr/local/lib/android/sdk/build-tools/31.0.0/zipalign"
+             APKSIGNER="/usr/local/lib/android/sdk/build-tools/31.0.0/apksigner" 
+             PLATFORM="/usr/local/lib/android/sdk/platforms/android-31/android.jar"
+             JAVA_HOME="/opt/hostedtoolcache/Java_Adopt_jdk/16.0.1-9/x64"
+             cd $PROJ
+             echo "Cleaning..."
+             rm -rf obj/*
+             rm -rf src/com/example/helloandroid/R.java
+             mkdir bin
+             echo "Compiling APK..."
+             javac -d obj  -classpath src -bootclasspath $PLATFORM -source 1.7 -target 1.7 src/com/hellokostya/helloandroid/MainActivity.java
 
-
-
-PROJ="/home/runner/work/android-java-terminal/android-java-terminal"
-AAPT="/usr/local/lib/android/sdk/build-tools/31.0.0/aapt"
-AAPT2="/usr/local/lib/android/sdk/build-tools/31.0.0/aapt2"
-DX="/usr/local/lib/android/sdk/build-tools/30.0.0/dx"
-ZIPALIGN="/usr/local/lib/android/sdk/build-tools/31.0.0/zipalign"
-APKSIGNER="/usr/local/lib/android/sdk/build-tools/31.0.0/apksigner" 
-PLATFORM="/usr/local/lib/android/sdk/platforms/android-31/android.jar"
-JAVA_HOME="/opt/hostedtoolcache/Java_Adopt_jdk/16.0.1-9/x64"
-
-cd $PROJ
-
-
-
-echo "Cleaning..."
-rm -rf obj/*
-rm -rf src/com/example/helloandroid/R.java
-mkdir bin
-
-
-echo "Compiling APK..."
-javac -d obj  -classpath src -bootclasspath $PLATFORM -source 1.7 -target 1.7 src/com/hellokostya/helloandroid/MainActivity.java
-
-pwd
+             pwd
 ls -l
 
 cd $PROJ
@@ -204,6 +180,16 @@ cat $PROJ/signing_key.jks
 $JAVA_HOME/bin/jarsigner  -keystore $PROJ/signing_key.jks   -storepass "B395b39595"    $PROJ/bin/hello.aab mykey
 
 $JAVA_HOME/bin/keytool -list -v -keystore $PROJ/signing_key.jks   -storepass "B395b39595"    
+
+
+
+
+
+
+
+
+
+
 
 
 
