@@ -62,7 +62,7 @@ jobs:
              rm -rf src/com/example/helloandroid/R.java
              mkdir bin
              echo "Compiling APK..."
-             javac -d obj  -classpath src -bootclasspath $PLATFORM -source 1.7 -target 1.7 src/com/hellokostya/helloandroid/MainActivity.java
+             javac -d obj  -classpath src -bootclasspath $PLATFORM -source 1.7 -target 1.7 src/com/hellokostya/helloandroid/SwingDemo.java
              pwd
              ls -l
              cd $PROJ
