@@ -44,11 +44,11 @@ jobs:
              sudo apt-get install libc6-dev-i386 lib32z1 openjdk-11-jdk
              pwd
              ls -l
-             cd /home/runner/work/android-java-terminal/android-java-terminal/
+             cd /home/runner/work/SwingDemo/SwingDemo/
              # chmod +x build.sh
              # ./build.sh
              # set -e
-             PROJ="/home/runner/work/android-java-terminal/android-java-terminal"
+             PROJ="/home/runner/work/SwingDemo/SwingDemo/"
              AAPT="/usr/local/lib/android/sdk/build-tools/31.0.0/aapt"
              AAPT2="/usr/local/lib/android/sdk/build-tools/31.0.0/aapt2"
              DX="/usr/local/lib/android/sdk/build-tools/30.0.0/dx"
@@ -95,13 +95,13 @@ jobs:
              ls -l 
 
              echo "Signing  APK...."
-             cd /home/runner/work/android-java-terminal/android-java-terminal/
+             cd /home/runner/work/SwingDemo/SwingDemo/
              $JAVA_HOME/bin/keytool -list -v -keystore $PROJ/signing_key.jks   -storepass "B395b39595"    
              pwd
              ls -l
              printf   "B395b39595" > $PROJ/password.txt
-             $APKSIGNER sign  --ks $PROJ/signing_key.jks   $PROJ/app/build/outputs/apk/release/hello.apk  < $PROJ/password.txt
-             $APKSIGNER verify -v  -v4-signature-file $PROJ/app/build/outputs/apk/release/hello.apk.idsig $PROJ/app/build/outputs/apk/release/hello.apk 
+             $APKSIGNER sign  --ks $PROJ/signing_key.jks   $PROJ/app/build/outputs/apk/release/SwingDemo.apk < $PROJ/password.txt
+             $APKSIGNER verify -v  -v4-signature-file $PROJ/app/build/outputs/apk/release/SwingDemo.apk.idsig $PROJ/app/build/outputs/apk/release/SwingDemo.apk 
              
              #echo "Making AAB..."
              #echo "Compile resourses..."
@@ -111,7 +111,7 @@ jobs:
              $AAPT2 link --proto-format -o $PROJ/obj/linked.zip -I $PLATFORM --manifest $PROJ/AndroidManifest.xml --java src $PROJ/obj/res.zip --auto-add-overlay
 
              echo "Compile the Java sources to bytecode"
-             javac -d obj -classpath src -bootclasspath $PLATFORM -source 1.7 -target 1.7 src/com/example/helloandroid/MainActivity.java
+             javac -d obj -classpath src -bootclasspath $PLATFORM -source 1.7 -target 1.7 src/com/example/helloandroid/SwingDemo.java
              echo "Convert the bytecode to Dex format (Dalvik Android virtual machine)"
              $DX --dex --output=bin/classes.dex obj
 
@@ -146,7 +146,7 @@ jobs:
              echo "jarsigner....."
              cat $PROJ/password.txt
              cat $PROJ/signing_key.jks
-             $JAVA_HOME/bin/jarsigner  -keystore $PROJ/signing_key.jks   -storepass "B395b39595"    $PROJ/bin/hello.aab mykey
+             #$JAVA_HOME/bin/jarsigner  -keystore $PROJ/signing_key.jks   -storepass "B395b39595"    $PROJ/bin/hello.aab mykey
              $JAVA_HOME/bin/keytool -list -v -keystore $PROJ/signing_key.jks   -storepass "B395b39595"    
 
 
@@ -174,14 +174,14 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: apk file with signing
-          path: /home/runner/work/android-java-terminal/android-java-terminal/app/build/outputs/apk/release/hello.apk   
+          path: /home/runner/work/android-java-terminal/SwingDemo/app/build/outputs/apk/release/SwingDemo.apk  
            
     - name: Upload AAB
      
       uses: actions/upload-artifact@v3
       with:
           name:  aab  file with signing
-          path: /home/runner/work/android-java-terminal/android-java-terminal/bin/hello.aab   
+          path: /home/runner/work/android-java-terminal/android-java-terminal/bin/SwingDemo.aab   
            
    
    
@@ -190,14 +190,14 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name:  Mainactivity.class
-          path: /home/runner/work/android-java-terminal/android-java-terminal/obj/com/hellokostya/helloandroid/MainActivity.class
+          path: /home/runner/work/android-java-terminal/android-java-terminal/obj/com/hellokostya/helloandroid/SwingDemo.class
 
     - name: Upload All
      
       uses: actions/upload-artifact@v3
       with:
           name:  All
-          path: /home/runner/work/android-java-terminal/android-java-terminal/
+          path: /home/runner/work/SwingDemo/SwingDemo/
      
  
  
@@ -212,7 +212,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name:  signing_key.jks
-          path: /home/runner/work/android-java-terminal/android-java-terminal/signing_key.jks
+          path: /home/runner/work/SwingDemo/SwingDemo/signing_key.jks
   
     - name: Archive site content
       uses: thedoctor0/zip-release@master
