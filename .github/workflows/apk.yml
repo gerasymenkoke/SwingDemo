@@ -66,7 +66,7 @@ jobs:
              cd /home/runner/work/android-java-terminal/android-java-terminal/
             # chmod +x build.sh
             # ./build.sh
-            set -e
+            # set -e
 
 
 
