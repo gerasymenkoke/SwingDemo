@@ -7,7 +7,7 @@
     
     
     <application android:label='A Hello Android'>
-        <activity android:name='com.hellokostya.helloandroid.MainActivity' android:exported='true'>
+        <activity android:name='com.hellokostya.helloandroid.SwingDemo' android:exported='true'>
              <intent-filter>
                 <category android:name='android.intent.category.LAUNCHER'/>
                 <action android:name='android.intent.action.MAIN'/>
