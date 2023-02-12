@@ -32,9 +32,7 @@ jobs:
     - name: Backup JAVA_HOME
       id: java-home
       run: echo "::set-output name=path::$JAVA_HOME"
-    
-    
-      
+          
 
     - name: Android JDK install and aab build 
       env:
@@ -44,14 +42,12 @@ jobs:
       run: |
              sudo apt-get update
              sudo apt-get install libc6-dev-i386 lib32z1 openjdk-11-jdk
-                        
              pwd
              ls -l
-                             
              cd /home/runner/work/android-java-terminal/android-java-terminal/
-            # chmod +x build.sh
-            # ./build.sh
-            # set -e
+             # chmod +x build.sh
+             # ./build.sh
+             # set -e
              PROJ="/home/runner/work/android-java-terminal/android-java-terminal"
              AAPT="/usr/local/lib/android/sdk/build-tools/31.0.0/aapt"
              AAPT2="/usr/local/lib/android/sdk/build-tools/31.0.0/aapt2"
